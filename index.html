@@ -50,24 +50,23 @@
         }
 
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 5px;
+            font-size: 3rem;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
 
         header h2 {
             font-size: 1.5rem;
-            color: #fff;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.9);
         }
 
         /* Botón de vuelta */
         .btn-inicio {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 50px; 
-            height: 50px;
+            top: 10px;
+            right: 10px;
+            width: 60px; 
+            height: 60px;
             transition: transform 0.3s ease;
             z-index: 10;
         }
@@ -243,6 +242,23 @@
                 padding-bottom: 30px;
             }
         }
+
+        /* Contenedor de la foto para centrarla */
+        .profile-pic-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px; /* Separación con la sección de contacto */
+        }
+
+        /* Estilo de la imagen */
+        .profile-img {
+            width: 160px;          /* Tamaño de la foto */
+            height: 160px;         /* Debe ser igual al ancho para ser redonda */
+            object-fit: cover;     /* Asegura que la foto no se deforme si no es cuadrada */
+            border-radius: 50%;    /* Hace la foto redonda */
+            border: 5px solid #FF7F50; /* Borde naranja a juego con tu tema */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra suave */
+        }
     </style>
 </head>
 <body>
@@ -256,6 +272,12 @@
     </header>
 
     <main>
+        
+        <div class="profile-pic-container">
+            <img src="https://ui-avatars.com/api/?name=Daniel+Oliveira&background=FF7F50&color=fff&size=200" 
+                alt="Daniel Oliveira Vidal" 
+                class="profile-img">
+        </div>
         
         <aside class="cv-sidebar">
             
@@ -293,7 +315,6 @@
                 </div>
             </section>
 
-            <a href="#" class="btn-download">Descargar CV en PDF</a>
         </aside>
 
         <section class="cv-content">
