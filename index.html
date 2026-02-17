@@ -1,383 +1,277 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Curriculum Vitae - Daniel Oliveira Vidal</title>
-		
-		<link rel="icon" type="image/png" href="img/FavIcon.png">
-		<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Daniel Oliveira Vidal</title>
+    
+    <link rel="icon" type="image/png" href="img/FavIcon.png">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-		<style>
-		    /* =========================================
-		       ESTILOS BASE (Heredados de tu portafolio)
-		       ========================================= */
-		    * {
-		        margin: 0;
-		        padding: 0;
-		        box-sizing: border-box;
-		    }
-		    
-		    body {
-		        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		        background: #ff8100; /* Color de respaldo */
-		        /* Asumiendo que quieres el mismo fondo, si no tienes la imagen en esta pag, se verá naranja */
-		        background-image: url('img/fondo_matrix.png'); /* Asegúrate de tener esta imagen si la usas */
-		        background-size: cover;
-		        background-position: center;
-		        background-attachment: fixed; 
-		        background-repeat: no-repeat;
-		        color: #333;
-		        line-height: 1.6;
-		    }
-		    
-		    /* Cabecera reducida para el CV */
-		    header {
-		        background-image: url('img/Banner_principal.png');
-		        background-size: cover;
-		        background-position: center;
-		        min-height: 40vh; /* Un poco más pequeña que la home */
-		        display: flex;
-		        flex-direction: column;
-		        justify-content: center;
-		        align-items: center;
-		        text-align: center;
-		        color: #e85d04;
-		        padding: 20px;
-		        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-		        border-bottom: 15px solid rgba(0,0,0,0.9);
-		        position: relative;
-		    }
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1E1E1E;
+            --text-main: #E0E0E0;
+            --text-muted: #A0A0A0;
+            --accent: #FF6B00;
+            --border-color: #333;
+        }
 
-		    header h1 {
-		        font-size: 3rem;
-		        margin-bottom: 10px;
-		        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-		    }
+        /* --- RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: 80px; /* Espacio para que el header fijo no tape el contenido */
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-		    header h2 {
-		        font-size: 1.5rem;
-		        text-shadow: 1px 1px 2px rgba(0,0,0,0.9);
-		    }
+        /* --- HEADER TIPO PORTAFOLIO (Barra Superior) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%; /* Margen lateral dinámico */
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
 
-		    /* Botón de vuelta */
-		    .btn-inicio {
-		        position: absolute;
-		        top: 10px;
-		        right: 10px;
-		        width: 60px; 
-		        height: 60px;
-		        transition: transform 0.3s ease;
-		        z-index: 10;
-		    }
+        .logo { font-size: 1.2rem; font-weight: bold; letter-spacing: 1px; color: white;}
+        .logo span { color: var(--accent); }
 
-		    .btn-inicio img {
-		        width: 100%;
-		        height: 100%;
-		        object-fit: contain;
-		    }
+        /* Botón de volver a la web */
+        .btn-web {
+            border: 1px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 4px;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-		    .btn-inicio:hover {
-		        transform: scale(1.1);
-		        cursor: pointer;
-		    }
+        .btn-web:hover {
+            background-color: var(--accent);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
+        }
 
-		    /* =========================================
-		       CONTENEDOR PRINCIPAL DEL CV
-		       ========================================= */
-		    main {
-		        max-width: 1200px;
-		        margin: 50px auto;
-		        background-color: #1c1c1c; 
-		        color: #e0e0e0; 
-		        border: 2px solid #e85d04;
-		        border-radius: 15px;
-		        box-shadow: 0 0 40px rgba(0,0,0,1); 
-		        padding: 40px;
-		        display: flex;
-		        flex-wrap: wrap; /* Para móviles */
-		        gap: 40px;
-		    }
+        /* --- CONTENEDOR PRINCIPAL (CENTRADO) --- */
+        .container {
+            max-width: 1100px; /* Ancho máximo para que no se estire demasiado */
+            margin: 40px auto; /* Auto a los lados = CENTRADO PERFECTO */
+            padding: 0 20px;
+        }
 
-		    /* Columna Izquierda (Datos personales, Skills) */
-		    .cv-sidebar {
-		        flex: 1;
-		        min-width: 250px;
-		        border-right: 1px solid #e85d04;
-		        padding-right: 20px;
-		    }
+        /* Cabecera interna del CV (Nombre y Título) */
+        .cv-header-internal {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .cv-header-internal h1 { font-size: 2.5rem; margin-bottom: 5px; color: white; }
+        .cv-header-internal h2 { color: var(--accent); font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; }
 
-		    /* Columna Derecha (Experiencia, Educación) */
-		    .cv-content {
-		        flex: 2;
-		        min-width: 300px;
-		    }
+        /* --- LAYOUT DEL CV (2 COLUMNAS) --- */
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr; /* Columna izq fija (300px), dcha flexible */
+            gap: 40px;
+            align-items: start; /* Alineación superior */
+        }
 
-		    /* Estilos generales de secciones del CV */
-		    .section-title {
-		        color: #e85d04;
-		        text-transform: uppercase;
-		        letter-spacing: 1px;
-		        border-bottom: 2px solid #e85d04;
-		        padding-bottom: 5px;
-		        margin-bottom: 20px;
-		        font-size: 1.4rem;
-		        text-shadow: 1px 1px 2px black;
-		    }
+        /* --- BARRA LATERAL (Izquierda) --- */
+        .sidebar {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
 
-		    .contact-info p {
-		        margin-bottom: 10px;
-		        display: flex;
-		        align-items: center;
-		        gap: 10px;
-		    }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            margin: 0 auto 20px auto;
+            display: block;
+        }
 
-		    .contact-info i {
-		        color: #e85d04;
-		        font-size: 1.2rem;
-		    }
+        .section-title-sm {
+            color: white;
+            font-size: 1.1rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            text-transform: uppercase;
+        }
+        /* El primer título no necesita margen arriba */
+        .sidebar .section-title-sm:first-of-type { margin-top: 0; }
 
-		    /* Lista de Habilidades (Tags) */
-		    .skills-list {
-		        list-style: none;
-		        display: flex;
-		        flex-wrap: wrap;
-		        gap: 10px;
-		    }
+        .contact-info p {
+            font-size: 0.9rem; margin-bottom: 10px; color: var(--text-muted); display: flex; gap: 10px; align-items: center;
+        }
+        .contact-info i { color: var(--accent); width: 20px; text-align: center;}
 
-		    .skill-tag {
-		        background-color: #333;
-		        color: #e85d04;
-		        padding: 5px 12px;
-		        border-radius: 5px;
-		        font-size: 0.9rem;
-		        font-weight: bold;
-		        border: 1px solid #e85d04;
-		        transition: all 0.3s ease;
-		    }
+        /* Tags de habilidades */
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--accent);
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+        }
+        .tag:hover { border-color: var(--accent); }
 
-		    .skill-tag:hover {
-		        background-color: #e85d04;
-		        color: #000;
-		    }
+        /* --- CONTENIDO PRINCIPAL (Derecha) --- */
+        .main-content {
+            /* No necesita estilos extra, ocupa el espacio restante del grid */
+        }
 
-		    /* Items de Experiencia y Educación */
-		    .cv-item {
-		        margin-bottom: 25px;
-		        padding-left: 15px;
-		        border-left: 3px solid #333;
-		        transition: border-left-color 0.3s;
-		    }
+        .section-title-lg {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-		    .cv-item:hover {
-		        border-left-color: #e85d04;
-		    }
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 2px solid #333;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -6px; top: 5px;
+            width: 10px; height: 10px; background: var(--bg-color);
+            border: 2px solid var(--accent); border-radius: 50%;
+        }
 
-		    .cv-item h3 {
-		        font-size: 1.2rem;
-		        color: #fff;
-		        margin-bottom: 2px;
-		    }
+        .timeline-item h3 { color: white; margin-bottom: 2px; font-size: 1.2rem; }
+        .timeline-item .place { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+        .timeline-item .date { color: #666; font-size: 0.85rem; font-style: italic; margin-bottom: 8px; display: block; }
+        .timeline-item p, .timeline-item ul { color: var(--text-muted); font-size: 0.95rem; }
+        .timeline-item ul { margin-left: 20px; margin-top: 5px; }
 
-		    .cv-item .company {
-		        color: #e85d04;
-		        font-weight: bold;
-		        font-size: 1rem;
-		    }
+        /* --- RESPONSIVE --- */
+        @media (max-width: 850px) {
+            .cv-grid { grid-template-columns: 1fr; } /* Pasa a 1 sola columna en móvil */
+            .sidebar { text-align: center; }
+            .contact-info p { justify-content: center; }
+            .section-title-sm { border-left: none; border-bottom: 2px solid var(--accent); padding-bottom: 5px; padding-left: 0; display: inline-block;}
+        }
+    </style>
+</head>
+<body>
 
-		    .cv-item .date {
-		        font-style: italic;
-		        color: #888;
-		        font-size: 0.9rem;
-		        margin-bottom: 10px;
-		        display: block;
-		    }
+    <header>
+        <div class="logo">Orange<span>.CV</span></div>
+        
+        <a href="https://elorange12.github.io/Pagina-web" class="btn-web">
+            <span>&#8617;</span> Volver a mi Web
+        </a>
+    </header>
 
-		    .cv-item ul {
-		        list-style-type: square;
-		        margin-left: 20px;
-		        color: #ccc;
-		    }
+    <div class="container">
+        
+        <div class="cv-header-internal">
+            <h1>Daniel Oliveira Vidal</h1>
+            <h2>Curriculum Vitae</h2>
+        </div>
 
-		    /* Botón de descarga */
-		    .btn-download {
-		        display: block;
-		        width: 100%;
-		        background-color: #e85d04;
-		        color: #000;
-		        text-align: center;
-		        padding: 15px;
-		        border-radius: 8px;
-		        text-decoration: none;
-		        font-weight: bold;
-		        margin-top: 30px;
-		        font-size: 1.1rem;
-		        transition: background 0.3s, transform 0.3s;
-		        border: none;
-		        cursor: pointer;
-		    }
+        <div class="cv-grid">
+            
+            <aside class="sidebar">
+                <img src="img/Foto_CV.png" alt="Daniel" class="profile-img">
+                
+                <h3 class="section-title-sm">Contacto</h3>
+                <div class="contact-info">
+                    <p><i>&#9993;</i> danieloliveiravidal12@gmail.com</p>
+                    <p><i>&#128222;</i> +34 607 048 085</p>
+                    <p><i>&#128205;</i> Valencia, España</p>
+                    <p><i>&#128279;</i> <a href="https://www.linkedin.com/in/daniel-oliveira-vidal/">LinkedIn Profile</a></p>
+                    <p><i>&#128025;</i> <a href="https://github.com/ElOrange12">GitHub Profile</a></p>
+                </div>
 
-		    .btn-download:hover {
-		        background-color: #ff8100;
-		        transform: translateY(-2px);
-		        box-shadow: 0 0 15px rgba(232, 93, 4, 0.6);
-		    }
+                <h3 class="section-title-sm">Skills Técnicas</h3>
+                <div class="skill-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">Linux</span>
+                </div>
 
-		    /* Pie de página */
-		    footer {
-		        text-align: center; 
-		        padding: 20px; 
-		        margin-top: 20px;
-		        color: #e85d04; 
-		        font-weight: bold;
-		        background-color: rgba(0,0,0,0.9);
-		    }
+                <h3 class="section-title-sm">Idiomas</h3>
+                <div class="contact-info">
+                    <p>Español (Nativo)</p>
+                    <p>Valenciano (B2)</p>
+                    <p>Inglés (B1)</p>
+                </div>
+            </aside>
 
-		    /* Responsive */
-		    @media (max-width: 768px) {
-		        .cv-sidebar {
-		            border-right: none;
-		            border-bottom: 1px solid #e85d04;
-		            padding-right: 0;
-		            padding-bottom: 30px;
-		        }
-		    }
+            <main class="main-content">
+                
+                <section>
+                    <h2 class="section-title-lg">Perfil Profesional</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">
+                        Desarrollador de Aplicaciones Multiplataforma apasionado por la programación y la resolución de problemas. 
+                        Especializado en backend con Python y bases de datos, pero con capacidad para desarrollar interfaces web dinámicas.
+                    </p>
+                </section>
 
-		    /* Contenedor de la foto para centrarla */
-		    .profile-pic-container {
-		        display: flex;
-		        justify-content: center;
-		        margin-bottom: 30px; /* Separación con la sección de contacto */
-		    }
+                <section>
+                    <h2 class="section-title-lg">Experiencia Laboral</h2>
+                    <div class="timeline-item">
+                        <h3>Asistente de Informática</h3>
+                        <span class="place">Colegio Ntra. Sra. de Fátima Valencia</span>
+                        <span class="date">2024 - 2025</span>
+                        <ul>
+                            <li>Mantenimiento y configuración de equipos informáticos.</li>
+                            <li>Instalación de software y puesta a punto de aulas.</li>
+                        </ul>
+                    </div>
+                </section>
 
-		    /* Estilo de la imagen */
-		    .profile-img {
-		        width: 160px;          /* Tamaño de la foto */
-		        height: 160px;         /* Debe ser igual al ancho para ser redonda */
-		        object-fit: cover;     /* Asegura que la foto no se deforme si no es cuadrada */
-		        border-radius: 50%;    /* Hace la foto redonda */
-		        border: 5px solid #FF7F50; /* Borde naranja a juego con tu tema */
-		        box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra suave */
-		    }
-		</style>
-	</head>
-	<body>
+                <section>
+                    <h2 class="section-title-lg">Educación</h2>
+                    <div class="timeline-item">
+                        <h3>Grado Superior DAM</h3>
+                        <span class="place">CEAC FP Valencia</span>
+                        <span class="date">2025 - Actualidad</span>
+                        <p>Desarrollo de Aplicaciones Multiplataforma.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Bachillerato Tecnológico</h3>
+                        <span class="place">Colegio Ntra. Sra. de Fátima</span>
+                        <span class="date">2023 - 2025</span>
+                    </div>
+                </section>
 
-		<header>
-		    <a href="https://elorange12.github.io/Pagina-web" class="btn-inicio" title="Volver al Inicio"><img src="img/Icono_vuelta.png" alt="Volver"></a>
-		    <h1>Daniel Oliveira Vidal</h1>
-		    <h2>Curriculum Vitae</h2>
-		</header>
+            </main>
+        </div>
+    </div>
 
-		<main>
-		    
-		    <div class="profile-pic-container">
-		        <img src="img/Foto_CV.png" alt="Daniel Oliveira Vidal" class="profile-img">
-		    </div>
-		    
-		    <aside class="cv-sidebar">
-		        
-		        <section style="margin-bottom: 40px;">
-		            <h3 class="section-title">Contacto</h3>
-		            <div class="contact-info">
-		                <p>📧 danieloliveiravidal12@gmail.com</p>
-		                <p>📱 +34 607 048 085</p>
-		                <p>📍 Sant Isidre, Valencia, España</p>
-		                <p>🔗 linkedin.com/in/daniel-oliveira-vidal</p>
-		                <p>🐙 github.com/ElOrange12</p>
-		            </div>
-		        </section>
-
-		        <section style="margin-bottom: 40px;">
-		            <h3 class="section-title">Habilidades Técnicas</h3>
-		            <ul class="skills-list">
-		                <li class="skill-tag">Python</li>
-		                <li class="skill-tag">Java</li>
-		                <li class="skill-tag">HTML5 & CSS3</li>
-		                <li class="skill-tag">JavaScript</li>
-		                <li class="skill-tag">PHP</li>
-		                <li class="skill-tag">MySQL</li>
-		                <li class="skill-tag">Git / GitHub</li>
-		                <li class="skill-tag">Linux Terminal</li>
-		            </ul>
-		        </section>
-
-		        <section>
-		            <h3 class="section-title">Idiomas</h3>
-		            <div class="contact-info">
-		                <p>Español (Nativo)</p>
-		                <p>Valenciano B2 (Certificado)</p>
-		                <p>Inglés B1 (No certificado)</p>
-		            </div>
-		        </section>
-
-		    </aside>
-
-		    <section class="cv-content">
-		        
-		        <div style="margin-bottom: 40px;">
-		            <h3 class="section-title">Perfil Profesional</h3>
-		            <p>
-		                Desarrollador de Aplicaciones Multiplataforma apasionado por la programación y la resolución de problemas. 
-		                Especializado en backend con Python y bases de datos, pero con capacidad para desarrollar interfaces web dinámicas.
-		                Siempre buscando aprender nuevas tecnologías y mejorar la eficiencia del código.
-		            </p>
-		        </div>
-
-		        <div style="margin-bottom: 40px;">
-		            <h3 class="section-title">Experiencia Laboral</h3>
-		            
-		            <article class="cv-item">
-		                <h3>Asistente de informática</h3>
-		                <span class="company">Colegio Ntra. Sra. de Fátima Valencia</span>
-		                <span class="date">2024 - 2025</span>
-		                <ul>
-		                    <li>Apoyo en el mantenimiento y configuración de equipos informáticos</li>
-		                    <li>Puesta a punto de ordenadores para uso en clase</li>
-		                    <li>Instalación de sistemas operativos</li>
-		                </ul>
-		            </article>
-
-		        </div>
-
-		        <div style="margin-bottom: 40px;">
-		            <h3 class="section-title">Educación</h3>
-		            
-		            <article class="cv-item">
-		                <h3>Grado Superior - Desarrollo de Aplicaciones Multiplataforma (DAM)</h3>
-		                <span class="company">CEAC FP Valencia</span>
-		                <span class="date">2025 - Actualmente</span>
-		                <p>Formación especializada en desarrollo de software, gestión de bases de datos y programación orientada a objetos.</p>
-		            </article>
-		            
-		            <article class="cv-item">
-		                <h3>Bachillerato Tecnológico</h3>
-		                <span class="company">Colegio Ntra. Sra. de Fátima Valencia</span>
-		                <span class="date">2023 - 2025</span>
-		            </article>
-		        </div>
-
-		        <div>
-		            <h3 class="section-title">Proyectos Destacados</h3>
-		            <article class="cv-item">
-		                <h3>Duelo de Magos & Lucha de Dragones</h3>
-		                <span class="date">Proyectos Personales (Python)</span>
-		                <p>Simuladores de combate en terminal utilizando programación orientada a objetos y lógica compleja de estados.</p>
-		            </article>
-		            <article class="cv-item">
-		                <h3>Calculadora de Matrices</h3>
-		                <span class="date">Herramienta CLI</span>
-		                <p>Herramienta matemática para operar matrices desarrollada en C++ y Python.</p>
-		            </article>
-		        </div>
-
-		    </section>
-
-		</main>
-
-		<footer>
-		    <p>&copy; Daniel Oliveira Vidal. Todos los derechos reservados.</p>
-		</footer>
-
-	</body>
+</body>
 </html>
